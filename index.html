@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200&family=Libre+Franklin:wght@100;200&display=block" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Libre Franklin', sans-serif;
+      background-color: #121212;
+      color: #dddddd;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+      transition: background-color 0.5s ease;
+    }
+    
+    h1 {
+      font-size: 40px;
+      color: #00796b;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .container {
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        width: 15%;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column; /* Set flex-direction to column */
+        align-items: center; /* Center align items horizontally */
+    }
+
+
+    .link {
+      width: 150px;
+      text-align: center;
+      margin: 10px;
+    }
+
+    .icon img {
+      width: 50px;
+      height: 50px;
+    }
+    
+    label {
+      color: #ff7f50;
+      font-size: 18px;
+      margin-bottom: 8px;
+      text-align: center;
+      transition: color 0.3s ease;
+      cursor: default;
+      user-select: none;
+      position: relative;
+      display: inline-block;
+    }
+
+    label::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #00796b;
+      transition: opacity 0.5s ease;
+      opacity: 0;
+    }
+
+    label:hover::before {
+      opacity: 0.7;
+    }
+
+    input, button, textarea {
+      margin: 10px 0;
+      padding: 12px;
+      box-sizing: border-box;
+      background-color: #333333;
+      color: #dddddd;
+      border: 1px solid #ff7f50;
+      border-radius: 5px;
+      width: 100%;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    input:hover, button:hover, textarea:hover {
+      background-color: #555555;
+      border-color: #ff6347;
+      color: #ffffff;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #999999;
+    }
+
+    button {
+      background-color: #ff7f50;
+      color: #ffffff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      width: auto;
+    }
+
+    button:hover {
+      background-color: #ff6347;
+    }
+
+    button[disabled] {
+      background-color: #666666;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 767px) {
+      h1 {
+        font-size: 30px;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .link {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      input,
+      button,
+      textarea {
+        width: auto;
+      }
+    }
+
+    body::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background: #2c3e50;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background-color: #e74c3c;
+      border-radius: 20px;
+      border: 3px solid #2c3e50;
+    }
+
+    .not-selectable {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .dark-theme-container {
+      background-color: #555555;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    input:hover, button:hover, textarea:hover {
+      background-color: #555555;
+      border-color: #ff6347;
+      color: #ffffff;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #999999;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+      overflow: auto;
+    }
+
+    textarea {
+      margin: 10px 0;
+      padding: 12px;
+      box-sizing: border-box;
+      background-color: #333333;
+      color: #dddddd;
+      border: 1px solid #ff7f50;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    textarea::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+      background: #2c3e50;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+      background-color: #e74c3c;
+      border-radius: 20px;
+      border: 3px solid #2c3e50;
+    }
+  </style>
+  <script>
+  var messageSent = false;
+
+  function updateButtonStatus() {
+    var sendButton = document.getElementById("sendButton");
+    sendButton.innerText = messageSent ? "Sent!" : "Send";
+    sendButton.disabled = messageSent;
+  }
+
+  function hexToDecimal(hex) {
+    return parseInt(hex.replace("#",""), 16)
+  }
+
+  function isEmail(emailAddress) {
+    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return emailAddress.match(regex) !== null;
+  }
+  
+  function sendMessage() {
+    var discordUsername = document.getElementById("discordUsername").value;
+    var email = document.getElementById("email").value;
+    var contact = document.getElementById("contact").value;
+  
+    if (!isEmail(email) || contact.trim() === "") {
+      alert("Please enter a valid email address and type of contact.");
+      return;
+    }
+  
+    var request = new XMLHttpRequest();
+    request.open("POST", "https://discord.com/api/webhooks/1182435452486176809/USDcGvag8zTTgYbkpKcL9VwXJBH4k9xYFXW1tSAIZkcWHkb7-vsvwNh0ZqnPa4bmMIgM");
+    request.setRequestHeader('Content-type', 'application/json');
+  
+    var discordUsernameText = discordUsername ? `# Discord Name: ${discordUsername}\n` : '';
+    
+    var myEmbed = {
+      title: "New Contact",
+      description: `${discordUsernameText}# Email: ${email}\n\n# Type of Contact: ${contact}`,
+      color: hexToDecimal("#2b2d31"),
+    }
+    
+    var params = {
+      content: "<@943496700604080149>",
+      embeds: [myEmbed]
+    }
+  
+    request.send(JSON.stringify(params));
+  
+    messageSent = true;
+    updateButtonStatus();
+  }
+
+  updateButtonStatus();
+  </script>
+  <title>Contact</title>
+</head>
+<body>
+  <div style="text-align: center; margin-bottom: 10px;">
+    <h1 class="not-selectable">Contact</h1>
+  </div>
+  <div class="container"> <!-- Add container div -->
+    <label for="email">Email:</label>
+    <input type="text" id="email" placeholder="Enter Email">
+    <br>
+    <label for="discordUsername">Discord Username (optional):</label>
+    <input type="text" id="discordUsername" placeholder="Enter Discord username">
+    <br>
+    <label for="contact">Message:</label>
+    <textarea id="contact" placeholder="Type here!" rows="4"></textarea>
+    <br><br><br>
+    <button onclick="sendMessage()" id="sendButton">Send</button>
+  </div>
+  <br>
+</body>
+</html>
