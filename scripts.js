@@ -45,5 +45,6 @@ var messageSent = false;
       request.send(JSON.stringify(params));
 
       messageSent = true;
+      console.log("Sent!");
       updateButtonStatus();
     }
