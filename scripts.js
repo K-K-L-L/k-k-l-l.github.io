@@ -15,6 +15,18 @@ var messageSent = false;
       return emailAddress.match(regex) !== null;
     }
 
+    function loadConfig(callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            var config = JSON.parse(xhr.responseText);
+            callback(config);
+          }
+        };
+        xhr.open("GET", "config.json", true);
+        xhr.send();
+      }
+      
     function sendMessage() {
       var discordUsername = document.getElementById("discordUsername").value;
       var email = document.getElementById("email").value;
