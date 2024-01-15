@@ -26,7 +26,7 @@ var messageSent = false;
       }
 
       var request = new XMLHttpRequest();
-      request.open("POST", process.env.DISCORD_WEBHOOK_URL);
+      request.open("POST", "https://discord.com/api/webhooks/1196441702697799761/GpfqmQcsnJwem11GEMHJcDY2L72NfB--t_cTkqatPZywu-1GuUcU4a_TuHGREZlcLtWU");
       request.setRequestHeader('Content-type', 'application/json');
 
       var discordUsernameText = discordUsername ? `# Discord Name: ${discordUsername}\n` : '';
