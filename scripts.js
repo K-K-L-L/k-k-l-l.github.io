@@ -15,18 +15,6 @@ var messageSent = false;
       return emailAddress.match(regex) !== null;
     }
 
-    function loadConfig(callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            var config = JSON.parse(xhr.responseText);
-            callback(config);
-          }
-        };
-        xhr.open("GET", "config.json", true);
-        xhr.send();
-      }
-      
     function sendMessage() {
       var discordUsername = document.getElementById("discordUsername").value;
       var email = document.getElementById("email").value;
@@ -38,7 +26,7 @@ var messageSent = false;
       }
 
       var request = new XMLHttpRequest();
-      request.open("POST", "https://discord.com/api/webhooks/1196441702697799761/GpfqmQcsnJwem11GEMHJcDY2L72NfB--t_cTkqatPZywu-1GuUcU4a_TuHGREZlcLtWU");
+      request.open("POST", process.env.DISCORD_WEBHOOK_URL);
       request.setRequestHeader('Content-type', 'application/json');
 
       var discordUsernameText = discordUsername ? `# Discord Name: ${discordUsername}\n` : '';
@@ -59,5 +47,3 @@ var messageSent = false;
       messageSent = true;
       updateButtonStatus();
     }
-
-    updateButtonStatus();
