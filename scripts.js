@@ -26,7 +26,7 @@ var messageSent = false;
       }
 
       var request = new XMLHttpRequest();
-      const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTE5NjQ0MTcwMjY5Nzc5OTc2MS9HcGZxbVFjc25Kd2VtMTFHRU1ISmNEWTJMNzJOZkItLXRfY1RrcWF0UFp5d3UtMUd1VWNVNGFfVHVIR1JFWmxjTHRXVQ==");
+      const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTE5NzE4MzE0MjQ3MDA5NDg0OC9PZjVERndHYWFfaDQ5LVFVbE9iNkZ2YXQzRWxzeUVaTWdUN3FKZFlNZ003ZG5IdzVDWHlMVUFQX2JrZzRHVWdyU1UzWA==");
 
       request.open("POST", decodedWebhookURL);
       request.setRequestHeader('Content-type', 'application/json');
@@ -47,6 +47,5 @@ var messageSent = false;
       request.send(JSON.stringify(params));
 
       messageSent = true;
-      console.log("sent... ig?");
       updateButtonStatus();
     }
