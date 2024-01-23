@@ -6,11 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const container = document.getElementById('container');
     const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const profileImage = document.getElementById('profileImage');
 
     document.body.classList.add('dark-theme');
 
-
+    let isDark = false;
     themeToggleBtn.addEventListener('click', function() {
         toggleTheme();
     });
