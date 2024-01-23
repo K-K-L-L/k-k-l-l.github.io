@@ -7,19 +7,26 @@ document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('container');
     const themeToggleBtn = document.getElementById('themeToggleBtn');
 
+    // Set initial dark theme
     document.body.classList.add('dark-theme');
 
-    let isDark = false;
+    // Add an event listener to the theme toggle button
+    let isDark = false; // Initialize as false since you start with the light theme
+    // document.container.style.backgroundColor = "#ffffff";
     themeToggleBtn.addEventListener('click', function() {
         toggleTheme();
     });
 
+    // Function to toggle between light and dark themes
     function toggleTheme() {
+        // Toggle the value of isDark
         isDark = !isDark;
 
         if (isDark) {
             document.body.style.backgroundColor = '#f0f0f0';
+            // document.link.backgroundColor = "#a3a3a3";
             document.getElementById('container').style.backgroundColor = "#ffffff";
+            // document.container.style.backgroundColor = "#1e1e1e";
         } else {
             document.body.style.backgroundColor = '#121212';
             document.getElementById('container').style.backgroundColor = "#1e1e1e";
@@ -37,19 +44,24 @@ document.addEventListener("DOMContentLoaded", function() {
         anchorElement.href = link.url;
         anchorElement.target = '_blank';
 
+        // Create a div for the icon
         const iconContainer = document.createElement('div');
         iconContainer.className = 'icon';
 
+        // Load icon from the provided URL
         const iconElement = document.createElement('img');
         iconElement.src = link.icon;
 
+        // Create a span for the text
         const textElement = document.createElement('span');
         textElement.appendChild(document.createTextNode(link.text));
 
+        // Append the icon and text to the anchor element
         iconContainer.appendChild(iconElement);
         anchorElement.appendChild(iconContainer);
         anchorElement.appendChild(textElement);
 
+        // Append the anchor element to the link container
         linkElement.appendChild(anchorElement);
         container.appendChild(linkElement);
     });
