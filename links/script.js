@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const links = [
         { url: 'https://github.com/K-K-L-L', text: 'GitHub', icon: 'https://cdn-icons-png.flaticon.com/128/11337/11337513.png' },
-        { url: 'https://discord.com/users/943496700604080149', text: 'Discord', icon: 'https://cdn-icons-png.flaticon.com/128/2582/2582637.png' },
+        { url: 'https://discord.com/users/943496700604080149', text: 'Discord (rayan1545#0)', icon: 'https://cdn-icons-png.flaticon.com/128/2582/2582637.png' },
         { url: 'https://steamcommunity.com/profiles/76561198851444409', text: 'Steam', icon: 'https://img.icons8.com/?size=50&id=12465&format=png'}
     ];
 
