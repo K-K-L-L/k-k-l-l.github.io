@@ -1,3 +1,26 @@
+document.addEventListener('DOMContentLoaded', function () {
+    setInterval(createSparkle, 1000);
+  
+    function createSparkle() {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+  
+        const randomX = Math.random() * window.innerWidth;
+        const randomY = Math.random() * window.innerHeight;
+  
+        sparkle.style.top = randomY + "px";
+        sparkle.style.left = randomX + "px";
+  
+        document.body.appendChild(sparkle);
+  
+        // Remove the sparkle element after the animation completes
+        setTimeout(() => {
+          sparkle.remove();
+        }, 2000); // Adjust the duration of the sparkle animation
+      }
+});
+
+
 var messageSent = false;
 
     function updateButtonStatus() {

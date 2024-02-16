@@ -2,14 +2,18 @@ body {
     font-family: 'Cairo', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #333333;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    overflow-x: hidden;
     transition: background-color 0.5s ease;
+    background-size: 200% 200%;
+    background: linear-gradient(135deg, #845ec2 0%, #ff9671 100%);
+    animation: gradientAnimation 10s ease infinite;
+    animation: fireGlow 1.5s infinite;
 }
 
 #header {
@@ -25,7 +29,7 @@ body {
 
 #header h2 {
     font-size: 20px;
-    color: #333333;
+    color: #58fff1;
     margin-top: 0px;
 }
 
@@ -40,13 +44,12 @@ body {
     max-width: 800px;
     padding: 30px;
     border-radius: 15px;
-    background-color: #121212;
+    transition: box-shadow 0.3s ease, background-color 0.5s ease;
+    background: linear-gradient(135deg, #3845ff 0%, #ff0000 100%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     text-align: center;
-}
-
-.dark-theme #container {
-    background-color: #1e1e1e;
 }
 
 .link {
@@ -124,14 +127,10 @@ body {
     color: #ffffff;
 }
 
-.dark-theme #header h2 {
-    color: lightgray
-}
-
 #themeToggleBtn {
     margin-top: 20px;
     position: fixed;
-    top: -5px;
+    top: 60px;
     right: 5px;
     background-color: transparent;
     border: none;
@@ -147,66 +146,11 @@ body {
     margin: auto;
 }
 
-body::-webkit-scrollbar {
-    width: 12px;              
-}
-
-body::-webkit-scrollbar-track {
-    background: #f0f0f0;     
-}
-
-body::-webkit-scrollbar-thumb {
-    background-color: #3498db;
-    border-radius: 20px;      
-    border: 3px solid #f0f0f0;
-}
-
-body.dark-theme::-webkit-scrollbar {
-    width: 12px;              
-}
-
-body.dark-theme::-webkit-scrollbar-track {
-    background: #2c3e50;     
-}
-
-body.dark-theme::-webkit-scrollbar-thumb {
-    background-color: #e74c3c;
-    border-radius: 20px;      
-    border: 3px solid #2c3e50;
-}
-
 #profileImage {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     margin-top: -100px;
-}
-
-#littleText {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    color: #333333;
-    margin-top: 10px;
-}
-
-.dark-theme #littleText {
-    color: lightgray;
-}
-
-#littleText a {
-    color: #0029ff;
-    text-decoration: none;
-}
-
-#littleText a:hover {
-    color: #1e87f0;
-}
-
-.dark-theme #littleText a:hover {
-    color: #1e87f0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -232,9 +176,173 @@ body.dark-theme::-webkit-scrollbar-thumb {
         height: 60px;
         margin-top: 25px;
     }
+}
 
-    #littleText {
-        font-size: 10px;
-        margin-top: 10px;
+.navbar {
+    background-color: transparent;
+    text-align: center;
+    box-shadow: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: background-color 0.5s ease;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    transition: background-color 0.5s ease;
+    background: linear-gradient(135deg, #296073 0%, #23272e 100%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+  }
+  
+  .nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-list li {
+    margin-right: 20px;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .navbar a:hover {
+    color: #ff7f50;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .menu-toggle {
+        display: none;
     }
+  }
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fireGlow {
+    0% {
+        filter: drop-shadow(0 0 10px #fffc35);
+    }
+    50% {
+        filter: drop-shadow(0 0 20px #fffb1d);
+    }
+    100% {
+        filter: drop-shadow(0 0 10px #fffb00);
+    }
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #2c3e50;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #e74c3c;
+    border-radius: 20px;
+    border: 3px solid #2c3e50;
+}
+
+.footer {
+    background: linear-gradient(135deg, #296073 0%, #23272e 100%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    padding: 20px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: none;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.5s ease;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    transition: background-color 0.5s ease;
+    background: linear-gradient(135deg, #296073 0%, #23272e 100%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+.footer-logo {
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.footer-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.footer-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.footer-social {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-social ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.footer-social li {
+    margin-right: 10px;
+}
+
+.footer-social a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    transition: color 0.3s ease;
 }

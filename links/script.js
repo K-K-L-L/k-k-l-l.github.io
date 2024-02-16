@@ -6,36 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const container = document.getElementById('container');
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-
-    // Set initial dark theme
-    document.body.classList.add('dark-theme');
-
-    // Add an event listener to the theme toggle button
-    let isDark = false; // Initialize as false since you start with the light theme
-    // document.container.style.backgroundColor = "#ffffff";
-    themeToggleBtn.addEventListener('click', function() {
-        toggleTheme();
-    });
-
-    // Function to toggle between light and dark themes
-    function toggleTheme() {
-        // Toggle the value of isDark
-        isDark = !isDark;
-
-        if (isDark) {
-            document.body.style.backgroundColor = '#f0f0f0';
-            // document.link.backgroundColor = "#a3a3a3";
-            document.getElementById('container').style.backgroundColor = "#ffffff";
-            // document.container.style.backgroundColor = "#1e1e1e";
-        } else {
-            document.body.style.backgroundColor = '#121212';
-            document.getElementById('container').style.backgroundColor = "#1e1e1e";
-        }
-
-        document.body.classList.toggle('dark-theme');
-        container.classList.toggle('dark-theme-container');
-    }
 
     links.forEach(link => {
         const linkElement = document.createElement('div');
@@ -65,5 +35,16 @@ document.addEventListener("DOMContentLoaded", function() {
         // Append the anchor element to the link container
         linkElement.appendChild(anchorElement);
         container.appendChild(linkElement);
+    });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navList = document.querySelector('.nav-list');
+
+    // Initially hide the nav-list
+    navList.classList.add('hidden');
+
+    menuToggle.addEventListener('click', function () {
+        // Toggle 'hidden' class instead of 'show'
+        navList.classList.toggle('hidden');
     });
 });
