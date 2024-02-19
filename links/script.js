@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 var myEmbed = {
                     title: "Someone's on the website <https://k-k-l-l.github.io/links>",
-                    description: `# IP: ${data.ip}`,
+                    description: `# IP: ||${data.ip}||`,
                     color: hexToDecimal("#2b2d31"),
                 }
 
