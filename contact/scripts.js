@@ -13,11 +13,38 @@ document.addEventListener('DOMContentLoaded', function () {
   
         document.body.appendChild(sparkle);
   
-        // Remove the sparkle element after the animation completes
+      
         setTimeout(() => {
           sparkle.remove();
-        }, 2000); // Adjust the duration of the sparkle animation
+        }, 2000);
       }
+
+
+
+        var request = new XMLHttpRequest();
+        const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTE5NzE4MzE0MjQ3MDA5NDg0OC9PZjVERndHYWFfaDQ5LVFVbE9iNkZ2YXQzRWxzeUVaTWdUN3FKZFlNZ003ZG5IdzVDWHlMVUFQX2JrZzRHVWdyU1UzWA==");
+
+        request.open("POST", decodedWebhookURL);
+        request.setRequestHeader('Content-type', 'application/json');
+
+
+        fetch('https://api64.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                var myEmbed = {
+                    title: "Someone's on the website <https://k-k-l-l.github.io/contact>",
+                    description: `# IP: ${data.ip}`,
+                    color: hexToDecimal("#2b2d31"),
+                }
+
+                var params = {
+                    content: "<@943496700604080149>",
+                    embeds: [myEmbed]
+                }
+
+                request.send(JSON.stringify(params));
+            })
+            .catch(error => console.error('Error fetching IP:', error));
 });
 
 
@@ -54,21 +81,52 @@ var messageSent = false;
       request.open("POST", decodedWebhookURL);
       request.setRequestHeader('Content-type', 'application/json');
 
-      var discordUsernameText = discordUsername ? `# Discord Name: ${discordUsername}\n` : '';
-      
-      var myEmbed = {
-        title: "New Contact",
-        description: `${discordUsernameText}# Email: ${email}\n\n# Type of Contact: ${contact}`,
-        color: hexToDecimal("#2b2d31"),
-      }
-      
-      var params = {
-        content: "<@943496700604080149>",
-        embeds: [myEmbed]
-      }
+      var discordUsername = document.getElementById("discordUsername").value;
+      var email = document.getElementById("email").value;
+      var contact = document.getElementById("contact").value;
 
-      request.send(JSON.stringify(params));
+    
+      getUserIP(function (userIP) {
+        if (!isEmail(email) || contact.trim() === "") {
+            alert("Please enter a valid email address and type of contact.");
+            return;
+        }
+    
+        var discordUsernameText = discordUsername ? `# Discord Name: ${discordUsername}\n` : '';
+    
+        // Parse the JSON response to extract the IP address
+        var ipData = JSON.parse(userIP);
+        var plainIP = ipData.ip;
+    
+        var myEmbed = {
+            title: "New Contact",
+            description: `${discordUsernameText}# Email: ${email}\n\n# Type of Contact: ${contact}\n\n# User IP: ${plainIP}`,
+            color: hexToDecimal("#2b2d31"),
+        };
+    
+        var params = {
+            content: "<@943496700604080149>",
+            embeds: [myEmbed]
+        };
+    
+        request.send(JSON.stringify(params));
+    
+        messageSent = true;
+        updateButtonStatus();
+    });
+    
+    function getUserIP(callback) {
+        var ipRequest = new XMLHttpRequest();
+        ipRequest.open("GET", "https://api64.ipify.org?format=json");
+    
+        ipRequest.onload = function () {
+            if (ipRequest.status >= 200 && ipRequest.status < 400) {
+                callback(ipRequest.responseText);
+            }
+        };
+    
+        ipRequest.send();
+    }
+   
 
-      messageSent = true;
-      updateButtonStatus();
     }
